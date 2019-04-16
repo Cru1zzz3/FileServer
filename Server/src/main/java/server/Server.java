@@ -31,6 +31,7 @@ public class Server {
                 // while all files not received
                 while (true) {
                     int readBytes = in.read(buf);
+                    System.out.println("Read " + readBytes + "bytes ");
 
                     if (readBytes == 0 || readBytes == -1)
                         break;
@@ -40,7 +41,11 @@ public class Server {
                     if (message.contains("New file: ")) {
                         filename = message.substring(10, message.indexOf("#"));
                         File file = new File(folder + "/", filename);
-                        file.createNewFile();
+                        boolean f = file.createNewFile();
+                        if (f)
+                            System.out.println("File " + filename + " created");
+                        else
+                            System.out.println("Creating failed");
                         fos = new FileOutputStream(file);
                     } else
                         fos.write(message.getBytes());

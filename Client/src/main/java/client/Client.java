@@ -31,6 +31,7 @@ public class Client {
 
                         // send package with file name
                         bout.write(("New file: " + file.getName() + "#").getBytes());
+                        System.out.println("File " + file.getName());
                         Thread.currentThread().sleep(20);
                         bout.flush();
 
